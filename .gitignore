@@ -1,0 +1,9 @@
+node_modules
+.next
+out
+coverage
+.DS_Store
+npm-debug.log*
+pnpm-lock.yaml
+yarn.lock
+tsconfig.tsbuildinfo
