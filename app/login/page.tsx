@@ -1,17 +1,13 @@
 'use client';
-
-import { useState } from 'react';
 import { useRoleStore, type UserRole } from '@/state/useRoleStore';
 
 const roles: UserRole[] = ['TechLead', 'SWE', 'PdM', 'QA', 'Designer'];
 
 export default function LoginPage() {
-  const { loginWithGitHub, selectRole, role } = useRoleStore();
-  const [hasAuthenticated, setHasAuthenticated] = useState(false);
+  const { loginWithGitHub, selectRole, role, isAuthenticated } = useRoleStore();
 
   const handleLogin = () => {
     loginWithGitHub();
-    setHasAuthenticated(true);
   };
 
   const handleRoleSelect = (pickedRole: UserRole) => {
@@ -32,7 +28,7 @@ export default function LoginPage() {
         </button>
       </div>
 
-      {hasAuthenticated && (
+      {isAuthenticated && (
         <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-vibe space-y-4">
           <h3 className="text-xl font-semibold">Choose your role to continue</h3>
           <p className="text-slate-400 text-sm">同じボードでも役割に応じて強調が変化します。</p>
