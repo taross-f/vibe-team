@@ -52,7 +52,20 @@ export default function BoardPage() {
   const { role, isAuthenticated, currentUser } = useRoleStore();
 
   if (!isAuthenticated || !role) {
-    throw new Error('Board requires authentication and a selected role. Go to /login first.');
+    return (
+      <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 shadow-vibe">
+        <h2 className="text-xl font-semibold">Login required</h2>
+        <p className="text-slate-300 mt-2">
+          Boardを表示するにはログインとロール選択が必要です。/login から開始してください。
+        </p>
+        <a
+          href="/login"
+          className="inline-flex mt-4 px-4 py-2 rounded-lg bg-emerald-500 text-white font-semibold shadow-vibe hover:shadow-float transition"
+        >
+          Go to Login
+        </a>
+      </div>
+    );
   }
 
   const grouped = useMemo(() => {
